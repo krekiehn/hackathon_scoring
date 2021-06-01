@@ -1,0 +1,13 @@
+[
+  {"image": "1.jpg", "prediction": 0},
+  {"image": "2.jpg", "prediction": 0},
+  {"image": "3.jpg", "prediction": 0},
+  {"image": "4.jpg", "prediction": 0},
+  {"image": "5.jpg", "prediction": 0},
+  {"image": "6.jpg", "prediction": 0},
+  {"image": "7.jpg", "prediction": 0},
+  {"image": "8.jpg", "prediction": 0},
+  {"image": "9.jpg", "prediction": 0},
+  {"image": "10.jpg", "prediction": 0},
+  {"image": "11.jpg", "prediction": 0}
+]
