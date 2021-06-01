@@ -25,8 +25,8 @@ def calc_score(ground_truth_json: list, prediction_json: list):
             if prediction_json[j][case_key] == file_name:
                 label = int(ground_truth_json[i][prediction_key])
                 error_square = (float(ground_truth_json[i][prediction_key]) - float(prediction_json[j][prediction_key]))**2
-                print(ground_truth_json[i][prediction_key])
-                print(prediction_json[j][prediction_key])
+                # print(ground_truth_json[i][prediction_key])
+                # print(prediction_json[j][prediction_key])
                 # add error to group of errors corresponding to the ground-truth label
                 class_error[label].append(error_square)
                 break
@@ -53,4 +53,9 @@ def calc_score(ground_truth_json: list, prediction_json: list):
     return error_mean_mean
 
 
-
+if __name__ == '__main__':
+    print('test:')
+    for pred in ['example_prediction.json', 'example_prediction_2.json', 'example_prediction_3.json']:
+        ground_truth_json, prediction_json = read_json(prediction=pred)
+        print(pred)
+        print(calc_score(ground_truth_json, prediction_json))
