@@ -1,4 +1,6 @@
 import json
+import os
+
 import numpy as np
 case_key = 'image'
 prediction_key = 'prediction'
@@ -30,14 +32,12 @@ def calc_score(ground_truth_json: list, prediction_json: list):
                 # add error to group of errors corresponding to the ground-truth label
                 class_error[label].append(error_square)
                 break
-            # last possible prediction for the actual case
-            elif j == len(prediction_json) - 1:
-                # no prediction for actual cases founded: append max error 3**2 = 9
-                label = int(ground_truth_json[i][prediction_key])
-                error_square = 3**2
-                # add error to group of errors corresponding to the ground-truth label
-                class_error[label].append(error_square)
-                break
+        else:
+            # no prediction for actual cases founded: append max error 3**2 = 9
+            label = int(ground_truth_json[i][prediction_key])
+            error_square = 3**2
+            # add error to group of errors corresponding to the ground-truth label
+            class_error[label].append(error_square)
 
     # calc mean of class square error per class (independent on the number of cases):
     for label in class_error.keys():
@@ -55,7 +55,7 @@ def calc_score(ground_truth_json: list, prediction_json: list):
 
 if __name__ == '__main__':
     print('test:')
-    for pred in ['example_prediction.json', 'example_prediction_2.json', 'example_prediction_3.json']:
+    for pred in [json_file for json_file in os.listdir('.') if json_file.endswith('.json')]:
         ground_truth_json, prediction_json = read_json(prediction=pred)
         print(pred)
         print(calc_score(ground_truth_json, prediction_json))
